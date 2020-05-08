@@ -1,0 +1,8 @@
+/Debug
+/x64
+
+*.dll
+
+checker.vcxproj
+checker.vcxproj.filters
+checker.vcxproj.user
