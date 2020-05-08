@@ -1,10 +1,17 @@
 #include "GameLoop.hpp"
 
-void GameLoop::run(sf::RenderWindow& window)
+void GameLoop::run()
 {
+	sf::Event event;
+
 	while (true)
 	{
-		window.clear();
-		window.display();
+		while (ComponentManager::get()->getWindow()->pollEvent(event))
+		{
+			eventController.handle(event);
+		}
+
+		ComponentManager::get()->getWindow()->display();
+		ComponentManager::get()->getWindow()->clear();
 	}
 }
