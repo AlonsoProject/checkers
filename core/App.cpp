@@ -1,7 +1,8 @@
 #include "App.hpp"
 
-App::App() : window(sf::VideoMode(800, 600), "Game")
+App::~App()
 {
+    ComponentManager::free();
 }
 
 /**
@@ -9,5 +10,5 @@ App::App() : window(sf::VideoMode(800, 600), "Game")
  */
 void App::run()
 {
-    gameLoop.run(window);
+    gameLoop.run();
 }

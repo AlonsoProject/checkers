@@ -11,15 +11,11 @@ class App
 {
 private:
 	/**
-	 * Current window
-	 */
-	sf::RenderWindow window;
-	/**
 	 * Entity of the game loop
 	 */
 	GameLoop gameLoop;
 public:
-	App();
+	~App();
 	/**
 	 * Run the application
 	 */
