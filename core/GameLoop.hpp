@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "ComponentManager.hpp"
-#include "../events/EventController.hpp"
+#include "../events/core/EventController.hpp"
 
 /**
  * Entity of the game loop
