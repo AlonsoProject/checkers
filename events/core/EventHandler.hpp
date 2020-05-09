@@ -5,7 +5,7 @@
 /**
  * Base abstract class for event handlers
  */
-class Event
+class EventHandler
 {
 protected:
     /**
@@ -13,12 +13,12 @@ protected:
      */
     sf::Event::EventType eventType;
 public:
-    virtual ~Event() {}
+    virtual ~EventHandler() {}
 
     sf::Event::EventType getEventType();
 
     /**
      * Handle an event
      */
-    virtual void handle() = 0;
+    virtual void handle(sf::Event& event) = 0;
 };

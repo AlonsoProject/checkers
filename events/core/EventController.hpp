@@ -4,6 +4,7 @@
 
 #include <vector>
 
+#include "EventHandler.hpp"
 #include "EventStorage.hpp"
 
 /**
