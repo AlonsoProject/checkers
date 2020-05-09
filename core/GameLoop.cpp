@@ -11,6 +11,7 @@ void GameLoop::run()
 			eventController.handle(event);
 		}
 
+		ComponentManager::get()->getBoard()->draw();
 		ComponentManager::get()->getWindow()->display();
 		ComponentManager::get()->getWindow()->clear();
 	}
