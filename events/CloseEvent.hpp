@@ -1,13 +1,16 @@
 #pragma once
 
-#include "Event.hpp"
+#include "core/EventHandler.hpp"
 
 #include "../core/ComponentManager.hpp"
 
-class CloseEvent : public Event
+class CloseEvent : public EventHandler
 {
 public:
 	CloseEvent();
 
-	virtual void handle() override;
+	/**
+	 * Handle an event
+	 */
+	virtual void handle(sf::Event& event) override;
 };
