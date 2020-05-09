@@ -2,6 +2,9 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "../core/Config.hpp"
+#include "../objects/Board.hpp"
+
 /**
  * Component manager
  * This class is singelton
@@ -21,6 +24,11 @@ private:
     sf::RenderWindow* window = nullptr;
 
     /**
+     * Board
+     */
+    Board* board = nullptr;
+
+    /**
      * Implements the singelton
      */
     ComponentManager() {}
@@ -36,4 +44,6 @@ public:
     static void free();
 
     sf::RenderWindow* getWindow();
+
+    Board* getBoard();
 };
