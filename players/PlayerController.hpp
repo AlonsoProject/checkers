@@ -24,4 +24,6 @@ public:
 	Player* getCurrentPlayer();
 
 	std::vector<Player*> getPlayerStorage();
+
+	std::vector<int> getPlayerIds();
 };

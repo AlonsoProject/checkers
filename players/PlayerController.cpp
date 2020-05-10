@@ -36,3 +36,15 @@ std::vector<Player*> PlayerController::getPlayerStorage()
 {
 	return playerStorage;
 }
+
+std::vector<int> PlayerController::getPlayerIds()
+{
+	std::vector<int> ids;
+
+	for (auto player : playerStorage)
+	{
+		ids.push_back(player->getId());
+	}
+
+	return ids;
+}
