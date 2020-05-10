@@ -5,17 +5,19 @@
 #include "../core/Config.hpp"
 #include "../objects/Checker.hpp"
 
+class GameObjectManager;
+
 class CheckersFactory
 {
 private:
 	/**
 	 * Checker width
 	 */
-	float checkerWidth;
+	float checkerWidth = Config::getCellWidth() + 1;
 	/**
 	 * Checker height
 	 */
-	float checkerHeight;
+	float checkerHeight = Config::getCellHeight() + 1;
 	/**
 	 * Position for top a checker
 	 */
@@ -27,11 +29,15 @@ private:
 	/**
 	 * Number of checkers rows
 	 */
-	int numberCheckerRows;
+	int numberCheckerRows = Config::numberCheckerRows;
 	/**
 	 * Number of checkers in a row
 	 */
 	int numberCheckersInRow;
+	/**
+	 * Id owners
+	 */
+	std::vector<int> idOwners;
 public:
 	CheckersFactory();
 

@@ -1,13 +1,13 @@
 #include "CheckersFactory.hpp"
 
+#include "../core/GameObjectManager.hpp"
+
 CheckersFactory::CheckersFactory() :
-checkerWidth(Config::getCellWidth() + 1),
-checkerHeight(Config::getCellHeight() + 1),
 positionTopCheckers(0.0f, 0.0f), 
 positionBottomChecker(0.0f, Config::height - checkerHeight),
-numberCheckerRows(Config::numberCheckerRows)
+idOwners(GameObjectManager::get()->getPlayerController()->getPlayerIds())
 {
-
+	
 }
 
 /**
@@ -45,8 +45,8 @@ void CheckersFactory::factoryRow(std::vector<Checker*>& checkers)
 {
 	for (int i = 0; i < getNumberCheckersInRow(); i++)
 	{
-		checkers.push_back(new Checker(Config::whiteCheckerTile, positionTopCheckers));
-		checkers.push_back(new Checker(Config::blackCheckerTile, positionBottomChecker));
+		checkers.push_back(new Checker(idOwners[1], Config::whiteCheckerTile, positionTopCheckers));
+		checkers.push_back(new Checker(idOwners[0], Config::blackCheckerTile, positionBottomChecker));
 
 		checkers[checkers.size() - 2]->getCheckerTile()->resize(checkerWidth, checkerHeight);
 		checkers[checkers.size() - 1]->getCheckerTile()->resize(checkerWidth, checkerHeight);
