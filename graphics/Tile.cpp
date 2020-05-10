@@ -36,3 +36,9 @@ void Tile::setPosition(const sf::Vector2f& position)
 {
 	tileSprite->setPosition(position);
 }
+
+void Tile::getPosition(sf::Vector2f& position)
+{
+	position.x = tileSprite->getPosition().x;
+	position.y = tileSprite->getPosition().y;
+}

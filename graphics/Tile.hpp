@@ -24,4 +24,6 @@ public:
 
 	virtual void move(const sf::Vector2f& offset) override;
 	virtual void setPosition(const sf::Vector2f& position) override;
+
+	void getPosition(sf::Vector2f& position);
 };
