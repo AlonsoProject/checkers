@@ -15,4 +15,13 @@ public:
 	static inline std::string whiteCellTile = "resources/tiles/board-white.png";
 
 	static inline std::string defaultFont = "resources/fonts/Arial.ttf";
+
+	static inline std::string blackCheckerTile = "resources/tiles/black.png";
+	static inline std::string whiteCheckerTile = "resources/tiles/white.png";
+	static inline std::string blackCheckerKingTile = "resources/tiles/black-king.png";
+	static inline std::string whiteCheckerKingTile = "resources/tiles/white-king.png";
+	static inline int numberCheckerRows = 3;
+
+	static float getCellWidth();
+	static float getCellHeight();
 };
