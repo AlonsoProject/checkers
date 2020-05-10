@@ -3,6 +3,8 @@
 #include <iostream>
 
 #include "core/EventHandler.hpp"
+#include "../core/ServiceObjectManager.hpp"
+#include "../core/GameObjectManager.hpp"
 
 class MouseButtonPressedEvent : public EventHandler
 {

@@ -21,7 +21,7 @@ sf::Text* Text::getInstance()
 
 void Text::draw()
 {
-	ComponentManager::get()->getWindow()->draw(*text);
+	ServiceObjectManager::get()->getWindow()->draw(*text);
 }
 
 void Text::move(const sf::Vector2f& offset)

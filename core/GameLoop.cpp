@@ -2,17 +2,26 @@
 
 void GameLoop::run()
 {
+	GameObjectManager::init();
+
 	sf::Event event;
 
+	GameObjectManager::get()->getGameSession()->resetTimer();
 	while (true)
 	{
-		while (ComponentManager::get()->getWindow()->pollEvent(event))
+		if (GameObjectManager::get()->getGameSession()->isExpired())
+		{
+			GameObjectManager::get()->getPlayerController()->togglePlayer();
+			GameObjectManager::get()->getGameSession()->resetTimer();
+		}
+
+		while (ServiceObjectManager::get()->getWindow()->pollEvent(event))
 		{
 			eventController.handle(event);
 		}
 
-		ComponentManager::get()->getBoard()->draw();
-		ComponentManager::get()->getWindow()->display();
-		ComponentManager::get()->getWindow()->clear();
+		GameObjectManager::get()->getBoard()->draw();
+		ServiceObjectManager::get()->getWindow()->display();
+		ServiceObjectManager::get()->getWindow()->clear();
 	}
 }

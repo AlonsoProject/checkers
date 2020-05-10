@@ -2,7 +2,7 @@
 
 App::~App()
 {
-    ComponentManager::free();
+    ServiceObjectManager::free();
 }
 
 /**

@@ -7,9 +7,15 @@ MouseButtonPressedEvent::MouseButtonPressedEvent()
 
 void MouseButtonPressedEvent::leftButtonPressed(sf::Event& event)
 {
-	std::cout << "The left button was pressed" << std::endl;
-	std::cout << "Mouse x: " << event.mouseButton.x << std::endl;
-	std::cout << "Mouse y: " << event.mouseButton.y << std::endl;
+	std::string name = GameObjectManager::get()->
+										 getPlayerController()->
+										 getCurrentPlayer()->
+										 getName();
+
+	int time = GameObjectManager::get()->getGameSession()->getElapsedTime();
+
+	std::cout << "Current user: " << name << std::endl;
+	std::cout << "Time: " << time << std::endl;
 }
 
 void MouseButtonPressedEvent::handle(sf::Event& event)

@@ -1,5 +1,5 @@
 #include "Tile.hpp"
-#include "../core/ComponentManager.hpp"
+#include "../core/ServiceObjectManager.hpp"
 
 Tile::Tile(const std::string& pathToTile) :
 tileTexture(new sf::Texture), tileSprite(new sf::Sprite)
@@ -24,7 +24,7 @@ void Tile::resize(uint32_t width, uint32_t height)
 
 void Tile::draw()
 {
-	ComponentManager::get()->getWindow()->draw(*tileSprite);
+	ServiceObjectManager::get()->getWindow()->draw(*tileSprite);
 }
 
 void Tile::move(const sf::Vector2f& offset)

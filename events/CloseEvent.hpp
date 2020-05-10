@@ -2,7 +2,7 @@
 
 #include "core/EventHandler.hpp"
 
-#include "../core/ComponentManager.hpp"
+#include "../core/ServiceObjectManager.hpp"
 
 class CloseEvent : public EventHandler
 {

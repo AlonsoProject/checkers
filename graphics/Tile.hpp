@@ -7,7 +7,7 @@
 #include "../core/IDrawable.hpp"
 #include "../core/IMoveable.hpp"
 
-class ComponentManager;
+class ServiceObjectManager;
 
 class Tile : public IDrawable, public IMoveable
 {

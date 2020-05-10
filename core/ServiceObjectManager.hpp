@@ -4,46 +4,40 @@
 
 #include "../core/Config.hpp"
 #include "../objects/Board.hpp"
+#include "../players/PlayerController.hpp"
+#include "GameSession.hpp"
 
 /**
- * Component manager
+ * Servie object manager
  * This class is singelton
  * This class storage components for the application
  */
-class ComponentManager
+class ServiceObjectManager
 {
 private:
     /**
      * Instance
      */
-    inline static ComponentManager* instance = nullptr;
-
+    inline static ServiceObjectManager* instance = nullptr;
     /**
      * Window
      */
     sf::RenderWindow* window = nullptr;
 
     /**
-     * Board
-     */
-    Board* board = nullptr;
-
-    /**
      * Implements the singelton
      */
-    ComponentManager() {}
-    ~ComponentManager();
+    ServiceObjectManager() {}
+    ~ServiceObjectManager();
 public:
     /**
      * Get instance of the component manager
      */
-    static ComponentManager* get();
+    static ServiceObjectManager* get();
     /**
      * Free instance of the component manager
      */
     static void free();
 
     sf::RenderWindow* getWindow();
-
-    Board* getBoard();
 };

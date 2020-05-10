@@ -2,7 +2,10 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "ComponentManager.hpp"
+#include "Config.hpp"
+#include "../widgets/Text.hpp"
+#include "ServiceObjectManager.hpp"
+#include "GameObjectManager.hpp"
 #include "../events/core/EventController.hpp"
 
 /**

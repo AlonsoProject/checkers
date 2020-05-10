@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "GameLoop.hpp"
+#include "ServiceObjectManager.hpp"
 
 /**
  * Entity of the application

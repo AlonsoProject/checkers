@@ -6,7 +6,7 @@
 
 #include "../core/IDrawable.hpp"
 #include "../core/IMoveable.hpp"
-#include "../core/ComponentManager.hpp"
+#include "../core/ServiceObjectManager.hpp"
 
 class Text : public IDrawable, public IMoveable
 {

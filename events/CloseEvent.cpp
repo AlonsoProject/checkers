@@ -7,5 +7,5 @@ CloseEvent::CloseEvent()
 
 void CloseEvent::handle(sf::Event& event)
 {
-	ComponentManager::get()->getWindow()->close();
+	ServiceObjectManager::get()->getWindow()->close();
 }
