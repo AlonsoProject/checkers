@@ -2,7 +2,8 @@
 
 Board::Board() : cells(new TileContainer())
 {
-	CellsTileFactory::factory(cells);
+	CellsTileFactory cellsTileFactory;
+	cellsTileFactory.factory(cells);
 }
 
 Board::~Board()
