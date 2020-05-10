@@ -2,8 +2,8 @@
 
 CellsTileFactory::CellsTileFactory() : currentOffset(0.0f, 0.0f)
 {
-	cellWidth	= Config::width / Config::colomnBoardNumber + 1;
-	cellHeight	= Config::height / Config::rowBoardNumber + 1;
+	cellWidth	= Config::getCellWidth() + 1;
+	cellHeight	= Config::getCellHeight() + 1;
 	totalCells	= Config::colomnBoardNumber * Config::rowBoardNumber;
 	currentTile = Config::blackCellTile;
 }
