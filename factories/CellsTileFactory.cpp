@@ -1,31 +1,60 @@
 #include "CellsTileFactory.hpp"
 
+CellsTileFactory::CellsTileFactory() : currentOffset(0.0f, 0.0f)
+{
+	cellWidth	= Config::width / Config::colomnBoardNumber + 1;
+	cellHeight	= Config::height / Config::rowBoardNumber + 1;
+	totalCells	= Config::colomnBoardNumber * Config::rowBoardNumber;
+	currentTile = Config::blackCellTile;
+}
+
+void CellsTileFactory::toggleTile()
+{
+	if (currentTile == Config::blackCellTile)
+	{
+		currentTile = Config::whiteCellTile;
+	}
+	else
+	{
+		currentTile = Config::blackCellTile;
+	}
+}
+
+std::string CellsTileFactory::getTile()
+{
+	return currentTile;
+}
+
+void CellsTileFactory::shiftOffsetToColumn()
+{
+	currentOffset.x += cellWidth;
+}
+
+void CellsTileFactory::shiftOffsetToRow()
+{
+	currentOffset.x = 0;
+	currentOffset.y += cellHeight;
+}
+
+sf::Vector2f CellsTileFactory::getOffset()
+{
+	return currentOffset;
+}
+
 void CellsTileFactory::factory(TileContainer* tileContainer)
 {
-	const float cellWidth		= Config::width / Config::colomnBoardNumber;
-	const float cellHeight		= Config::height / Config::rowBoardNumber;
-	int totalCells				= Config::colomnBoardNumber * Config::rowBoardNumber;
-	sf::Vector2f currentOffset(0.0f, 0.0f);
-	
-	std::string whiteCellTile   = "resources/tiles/board-white.png";
-	std::string blackCellTile   = "resources/tiles/board-black.png";
-	std::string currentTile		= blackCellTile;
-
-	for (int i = 0; i < totalCells + 1; i++)
+	for (int i = 0; i < totalCells; i++)
 	{
-		tileContainer->add(new Tile(currentTile));
-		tileContainer->get(i)->setPosition(currentOffset);
-		tileContainer->get(i)->resize(cellWidth, cellHeight);
-
-		if (currentTile == whiteCellTile) currentTile = blackCellTile;
-		else currentTile = whiteCellTile;
-
 		if (i != 0 && i % Config::colomnBoardNumber == 0)
 		{
-			currentOffset.x = 0;
-			currentOffset.y += cellHeight;
-			continue;
+			shiftOffsetToRow();
 		}
-		currentOffset.x += cellWidth;
+
+		tileContainer->add(new Tile(getTile()));
+		tileContainer->get(i)->setPosition(getOffset());
+		tileContainer->get(i)->resize(cellWidth, cellHeight);
+
+		toggleTile();
+		shiftOffsetToColumn();
 	}
 }
