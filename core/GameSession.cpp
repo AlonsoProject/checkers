@@ -5,9 +5,19 @@ GameSession::GameSession() : sessionDuration(60)
 	
 }
 
+int GameSession::getSessionDuration()
+{
+	return sessionDuration;
+}
+
 int GameSession::getElapsedTime()
 {
 	return timer.getElapsedTime().asSeconds();
+}
+
+int GameSession::getCountdown()
+{
+	return getSessionDuration() - getElapsedTime();
 }
 
 bool GameSession::isExpired()

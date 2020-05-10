@@ -18,7 +18,10 @@ private:
 public:
 	GameSession();
 
+	int getSessionDuration();
+
 	int getElapsedTime();
+	int getCountdown();
 	bool isExpired();
 	void resetTimer();
 };
