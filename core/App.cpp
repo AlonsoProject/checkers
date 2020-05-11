@@ -3,6 +3,7 @@
 App::~App()
 {
     ServiceObjectManager::free();
+    GameObjectManager::free();
 }
 
 /**
