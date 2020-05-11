@@ -13,6 +13,11 @@ Board::~Board()
 {
 	if (cells) delete cells;
 	if (selectedCells) delete selectedCells;
+	
+	for (auto checker : checkers)
+	{
+		if (checker) delete checker;
+	}
 }
 
 void Board::selectCellByPosition(float x, float y, int mode)
@@ -39,6 +44,30 @@ void Board::clearSelectedCells()
 		);
 	}
 	selectedCells->clear();
+
+	Checker* selectedChecker = findSelectedChecker();
+	if (selectedChecker) selectedChecker->setSelected(false);
+}
+
+bool Board::cellIsSelected(Tile* cell)
+{
+	for (int i = 0; i < selectedCells->getSize(); i++)
+	{
+		if (cell == selectedCells->get(i))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+Checker* Board::findSelectedChecker()
+{
+	for (auto checker : checkers)
+	{
+		if (checker->isSelected()) return checker;
+	}
+	return nullptr;
 }
 
 void Board::showMoves(Checker* checker)
@@ -65,6 +94,14 @@ void Board::showMoves(Checker* checker)
 			selectedCells->add(cell);
 		}
 	}
+}
+
+void Board::moveCheckerToCell(Checker* checker, Tile* cell)
+{
+	sf::Vector2f position;
+	cell->getPosition(position);
+
+	checker->setPosition(position);
 }
 
 Checker* Board::findCheckerByPosition(float x, float y)

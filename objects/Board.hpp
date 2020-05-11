@@ -38,7 +38,11 @@ public:
 	void selectCellByPosition(float x, float y, int mode = HOSTILE_COLOR);
 	void clearSelectedCells();
 
+	bool cellIsSelected(Tile* cell);
+	Checker* findSelectedChecker();
+
 	void showMoves(Checker* checker);
+	void moveCheckerToCell(Checker* checker, Tile* cell);
 
 	Checker* findCheckerByPosition(float x, float y);
 	Tile* findCellByPosition(float x, float y);
