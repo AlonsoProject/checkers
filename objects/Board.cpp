@@ -1,6 +1,6 @@
 #include "Board.hpp"
 
-Board::Board() : cells(new TileContainer()), highlightedCells(new TileContainer())
+Board::Board() : cells(new TileContainer()), selectedCells(new TileContainer())
 {
 	CellsTileFactory cellsTileFactory;
 	cellsTileFactory.factory(cells);
@@ -12,10 +12,10 @@ Board::Board() : cells(new TileContainer()), highlightedCells(new TileContainer(
 Board::~Board()
 {
 	if (cells) delete cells;
-	if (highlightedCells) delete highlightedCells;
+	if (selectedCells) delete selectedCells;
 }
 
-void Board::highlightedCellsByChecker(Checker* checker, int mode)
+void Board::selectCellByChecker(Checker* checker, int mode)
 {
 	sf::Vector2f checkerPosition;
 	checker->getCheckerTile()->getPosition(checkerPosition);
@@ -27,18 +27,18 @@ void Board::highlightedCellsByChecker(Checker* checker, int mode)
 	{
 		cell->updateTexture(Config::redCellTile);
 	}
-	highlightedCells->add(cell);
+	selectedCells->add(cell);
 }
 
-void Board::clearHighlightedCells()
+void Board::clearSelectedCells()
 {
-	for (int i = 0; i < highlightedCells->getSize(); i++)
+	for (int i = 0; i < selectedCells->getSize(); i++)
 	{
-		highlightedCells->get(i)->updateTexture(
-			highlightedCells->get(i)->getOldTexture()
+		selectedCells->get(i)->updateTexture(
+			selectedCells->get(i)->getOldTexture()
 		);
 	}
-	highlightedCells->clear();
+	selectedCells->clear();
 }
 
 Checker* Board::findCheckerByPosition(float x, float y)

@@ -22,15 +22,15 @@ private:
 	 */
 	std::vector<Checker*> checkers;
 	/**
-	 * Highlighted cells
+	 * Selected cells
 	 */
-	TileContainer* highlightedCells;
+	TileContainer* selectedCells;
 public:
 	Board();
 	~Board();
 
-	void highlightedCellsByChecker(Checker* checker, int mode = RED_HIGHLIGHTED);
-	void clearHighlightedCells();
+	void selectCellByChecker(Checker* checker, int mode = RED_HIGHLIGHTED);
+	void clearSelectedCells();
 
 	Checker* findCheckerByPosition(float x, float y);
 	Tile* findCellByPosition(float x, float y);
