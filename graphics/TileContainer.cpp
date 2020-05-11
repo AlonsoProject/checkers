@@ -12,6 +12,11 @@ TileContainer::~TileContainer()
 	}
 }
 
+void TileContainer::clear()
+{
+	tiles.clear();
+}
+
 void TileContainer::add(Tile* tile)
 {
 	tiles.push_back(tile);

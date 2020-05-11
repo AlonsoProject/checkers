@@ -13,6 +13,8 @@ public:
 	TileContainer();
 	~TileContainer();
 
+	void clear();
+
 	void add(Tile* tile);
 	Tile* get(uint32_t index);
 
