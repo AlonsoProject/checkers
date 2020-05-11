@@ -21,6 +21,16 @@ Tile* Checker::getCheckerTile()
 	return checkerTile;
 }
 
+bool Checker::isSelected()
+{
+	return selected;
+}
+
+void Checker::setSelected(bool value)
+{
+	selected = value;
+}
+
 void Checker::draw()
 {
 	checkerTile->draw();

@@ -9,6 +9,8 @@ class Checker : public IDrawable, public IMoveable
 private:
 	int idOwner;
 	Tile* checkerTile;
+
+	bool selected = false;
 public:
 	Checker(int idOwner, std::string pathToCheckerTile, sf::Vector2f position);
 	~Checker();
@@ -16,6 +18,9 @@ public:
 	int getIdOwner();
 
 	Tile* getCheckerTile();
+
+	bool isSelected();
+	void setSelected(bool value);
 
 	virtual void draw() override;
 
