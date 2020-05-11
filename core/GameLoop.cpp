@@ -21,7 +21,6 @@ void GameLoop::run()
 		if (GameSessionFacade::isExpired())
 		{
 			GameSessionFacade::userToggle();
-			username->getInstance()->setString(PlayerControllerFacade::getNameCurrentUserName());
 		}
 
 		while (ServiceObjectManager::get()->getWindow()->pollEvent(event))
@@ -32,6 +31,8 @@ void GameLoop::run()
 		timer->getInstance()->setString(
 			std::to_string(GameSessionFacade::getCountdown())
 		);
+
+		username->getInstance()->setString(PlayerControllerFacade::getNameCurrentUserName());
 
 		GameObjectManager::get()->getBoard()->draw();
 		username->draw();
