@@ -15,17 +15,17 @@ Board::~Board()
 	if (selectedCells) delete selectedCells;
 }
 
-void Board::selectCellByChecker(Checker* checker, int mode)
+void Board::selectCellByPosition(float x, float y, int mode)
 {
-	sf::Vector2f checkerPosition;
-	checker->getCheckerTile()->getPosition(checkerPosition);
+	Tile* cell = findCellByPosition(x, y);
 
-	Tile* cell = findCellByPosition(checkerPosition.x, checkerPosition.y);
-	if (!cell) return;
-
-	if (mode == RED_HIGHLIGHTED)
+	if (mode == HOSTILE_COLOR)
 	{
 		cell->updateTexture(Config::redCellTile);
+	}
+	if (mode == FRIENDLY_COLOR)
+	{
+		cell->updateTexture(Config::greenCellTile);
 	}
 	selectedCells->add(cell);
 }
@@ -39,6 +39,32 @@ void Board::clearSelectedCells()
 		);
 	}
 	selectedCells->clear();
+}
+
+void Board::showMoves(Checker* checker)
+{
+	std::vector<sf::Vector2f> cellAnglesPositions;
+	Math::getTileAnglesPositions(checker->getCheckerTile(), cellAnglesPositions);
+
+	const float shift = 5.0f;
+	Math::stretchSquare(cellAnglesPositions, shift);
+
+	for (const auto cellAngle : cellAnglesPositions)
+	{
+		Tile* cell = findCellByPosition(cellAngle.x, cellAngle.y);
+
+		if (cell)
+		{
+			Checker* checkerOnCell = findCheckerByPosition(cellAngle.x, cellAngle.y);
+			if (checkerOnCell && checkerOnCell->getIdOwner() == PlayerControllerFacade::getCurrentUserId())
+			{
+				continue;
+			}
+
+			cell->updateTexture(Config::greenCellTile);
+			selectedCells->add(cell);
+		}
+	}
 }
 
 Checker* Board::findCheckerByPosition(float x, float y)
@@ -63,7 +89,10 @@ Tile* Board::findCellByPosition(float x, float y)
 	{
 		cells->get(i)->getPosition(position);
 		
-		if (position.x == x && position.y == y) return cells->get(i);
+		bool result = (position.x < x && x < position.x + Config::getCellWidth()) &&
+					  (position.y < y && y < position.y + Config::getCellHeight());
+
+		if (result) return cells->get(i);
 	}
 	return nullptr;
 }
