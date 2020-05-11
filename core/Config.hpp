@@ -13,6 +13,8 @@ public:
 	static inline int colomnBoardNumber = 9;
 	static inline std::string blackCellTile = "resources/tiles/board-black.png";
 	static inline std::string whiteCellTile = "resources/tiles/board-white.png";
+	static inline std::string redCellTile = "resources/tiles/board-red.png";
+	static inline std::string greenCellTile = "resources/tiles/board-green.png";
 
 	static inline std::string defaultFont = "resources/fonts/Arial.ttf";
 
