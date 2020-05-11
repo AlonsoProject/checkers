@@ -8,5 +8,10 @@ Player* PlayerControllerFacade::getCurrentPlayer()
 
 std::string PlayerControllerFacade::getNameCurrentUserName()
 {
-	return GameObjectManager::get()->getPlayerController()->getCurrentPlayer()->getName();
+	return getCurrentPlayer()->getName();
+}
+
+int PlayerControllerFacade::getCurrentUserId()
+{
+	return getCurrentPlayer()->getId();
 }
