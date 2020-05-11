@@ -9,4 +9,5 @@ class BoardFacade
 public:
 	static void clearSelectedCells();
 	static Checker* findChecker(float x, float y);
+	static Tile* findCell(float x, float y);
 };

@@ -10,3 +10,8 @@ Checker* BoardFacade::findChecker(float x, float y)
 {
 	return GameObjectManager::get()->getBoard()->findCheckerByPosition(x, y);
 }
+
+Tile* BoardFacade::findCell(float x, float y)
+{
+	return GameObjectManager::get()->getBoard()->findCellByPosition(x, y);
+}
