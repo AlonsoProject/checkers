@@ -7,15 +7,17 @@ MouseButtonPressedEvent::MouseButtonPressedEvent()
 
 void MouseButtonPressedEvent::leftButtonPressed(sf::Event& event)
 {
-	std::string name = GameObjectManager::get()->
-										 getPlayerController()->
-										 getCurrentPlayer()->
-										 getName();
+	BoardFacade::clearSelectedCells();
 
-	int time = GameObjectManager::get()->getGameSession()->getElapsedTime();
-
-	std::cout << "Current user: " << name << std::endl;
-	std::cout << "Time: " << time << std::endl;
+	Checker* checker = BoardFacade::findChecker(event.mouseButton.x, event.mouseButton.y);
+	Player* currentPlayer = PlayerControllerFacade::getCurrentPlayer();
+	
+	if (!checker) return;
+	if (currentPlayer->getId() != checker->getIdOwner())
+	{
+		GameObjectManager::get()->getBoard()->selectCellByChecker(checker, RED_HIGHLIGHTED);
+		return;
+	}
 }
 
 void MouseButtonPressedEvent::handle(sf::Event& event)
