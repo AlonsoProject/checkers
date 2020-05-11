@@ -11,6 +11,9 @@
 class MouseButtonPressedEvent : public EventHandler
 {
 private:
+    void clickOnChecker(Checker* checker, sf::Event& event);
+    void clickOnCell(Tile* cell, sf::Event& event);
+
     void leftButtonPressed(sf::Event& event);
 public:
     MouseButtonPressedEvent();
