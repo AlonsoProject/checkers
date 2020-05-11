@@ -4,9 +4,12 @@
 
 #include "Config.hpp"
 #include "../widgets/Text.hpp"
-#include "ServiceObjectManager.hpp"
 #include "GameObjectManager.hpp"
+#include "ServiceObjectManager.hpp"
+#include "../facades/GameSessionFacade.hpp"
+#include "../factories/TextWidgetFactory.hpp"
 #include "../events/core/EventController.hpp"
+#include "../facades/PlayerControllerFacade.hpp"
 
 /**
  * Entity of the game loop
