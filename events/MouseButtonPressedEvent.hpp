@@ -6,6 +6,7 @@
 #include "../facades/BoardFacade.hpp"
 #include "../core/GameObjectManager.hpp"
 #include "../core/ServiceObjectManager.hpp"
+#include "../facades/GameSessionFacade.hpp"
 #include "../facades/PlayerControllerFacade.hpp"
 
 class MouseButtonPressedEvent : public EventHandler

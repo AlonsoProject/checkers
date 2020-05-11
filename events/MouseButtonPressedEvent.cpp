@@ -7,6 +7,7 @@ MouseButtonPressedEvent::MouseButtonPressedEvent()
 
 void MouseButtonPressedEvent::clickOnChecker(Checker* checker, sf::Event& event)
 {
+	BoardFacade::clearSelectedCells();
 	if (PlayerControllerFacade::getCurrentUserId() != checker->getIdOwner())
 	{
 		GameObjectManager::get()->getBoard()->selectCellByPosition(
@@ -23,16 +24,27 @@ void MouseButtonPressedEvent::clickOnChecker(Checker* checker, sf::Event& event)
 			FRIENDLY_COLOR
 		);
 		GameObjectManager::get()->getBoard()->showMoves(checker);
+		checker->setSelected(true);
 	}
 }
 
 void MouseButtonPressedEvent::clickOnCell(Tile* cell, sf::Event& event)
 {
+	if (GameObjectManager::get()->getBoard()->cellIsSelected(cell))
+	{
+		Checker* selectedChecker = GameObjectManager::get()->getBoard()->findSelectedChecker();
+
+		if (selectedChecker)
+		{
+			GameObjectManager::get()->getBoard()->moveCheckerToCell(selectedChecker, cell);
+			GameSessionFacade::userToggle();
+		}
+	}
+	BoardFacade::clearSelectedCells();
 }
 
 void MouseButtonPressedEvent::leftButtonPressed(sf::Event& event)
 {
-	BoardFacade::clearSelectedCells();
 	Checker* checker = BoardFacade::findChecker(event.mouseButton.x, event.mouseButton.y);
 	if (checker)
 	{
