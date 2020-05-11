@@ -14,6 +14,9 @@ class Tile : public IDrawable, public IMoveable
 private:
 	sf::Texture* tileTexture;
 	sf::Sprite* tileSprite;
+
+	std::string currentTilePath;
+	std::string oldTilePath;
 public:
 	Tile(const std::string& pathToTile);
 	~Tile();
@@ -26,4 +29,7 @@ public:
 	virtual void setPosition(const sf::Vector2f& position) override;
 
 	void getPosition(sf::Vector2f& position);
+
+	std::string getOldTexture();
+	void updateTexture(const std::string& pathToTexture);
 };

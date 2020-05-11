@@ -6,6 +6,7 @@ tileTexture(new sf::Texture), tileSprite(new sf::Sprite)
 {
 	tileTexture->loadFromFile(pathToTile);
 	tileSprite->setTexture(*tileTexture);
+	currentTilePath = pathToTile;
 }
 
 Tile::~Tile()
@@ -41,4 +42,17 @@ void Tile::getPosition(sf::Vector2f& position)
 {
 	position.x = tileSprite->getPosition().x;
 	position.y = tileSprite->getPosition().y;
+}
+
+std::string Tile::getOldTexture()
+{
+	return oldTilePath;
+}
+
+void Tile::updateTexture(const std::string& pathToTexture)
+{
+	oldTilePath = currentTilePath;
+	tileTexture->loadFromFile(pathToTexture);
+	tileSprite->setTexture(*tileTexture);
+	currentTilePath = pathToTexture;
 }
