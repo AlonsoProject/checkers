@@ -12,4 +12,5 @@ class Math
 public:
 	static void getTileAnglesPositions(Tile* tile, std::vector<sf::Vector2f>& anglesPositions);
 	static void stretchSquare(std::vector<sf::Vector2f>& anglesPositions, float shift);
+	static void getDirection(Tile* root, Tile* tile, sf::Vector2f& direction);
 };

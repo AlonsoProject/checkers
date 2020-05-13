@@ -33,3 +33,30 @@ void Math::stretchSquare(std::vector<sf::Vector2f>& anglesPositions, float shift
 	anglesPositions[3].x -= shift;
 	anglesPositions[3].y += shift;
 }
+
+void Math::getDirection(Tile* root, Tile* tile, sf::Vector2f& direction)
+{
+	sf::Vector2f rootPosition;
+	sf::Vector2f tilePosition;
+
+	root->getPosition(rootPosition);
+	tile->getPosition(tilePosition);
+
+	if (rootPosition.x > tilePosition.x)
+	{
+		direction.x = -1;
+	}
+	else
+	{
+		direction.x = 1;
+	}
+
+	if (rootPosition.y > tilePosition.y)
+	{
+		direction.y = -1;
+	}
+	else
+	{
+		direction.y = 1;
+	}
+}
