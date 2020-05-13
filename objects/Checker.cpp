@@ -1,7 +1,16 @@
 #include "Checker.hpp"
 
-Checker::Checker(int idOwner, std::string pathToCheckerTile, sf::Vector2f position) :
-idOwner(idOwner), checkerTile(new Tile(pathToCheckerTile))
+Checker::Checker(
+	int idOwner,
+	const std::string& pathToCheckerTile,
+	const std::string& pathToCheckerKingTile,
+	sf::Vector2f position,
+	uint8_t moveDirection
+) :
+idOwner(idOwner), 
+checkerTile(new Tile(pathToCheckerTile)), 
+pathToCheckerKingTile(pathToCheckerKingTile),
+moveDirection(moveDirection)
 {
 	setPosition(position);
 }
@@ -21,6 +30,11 @@ Tile* Checker::getCheckerTile()
 	return checkerTile;
 }
 
+uint8_t Checker::getMoveDirection()
+{
+	return moveDirection;
+}
+
 bool Checker::isSelected()
 {
 	return selected;
@@ -29,6 +43,22 @@ bool Checker::isSelected()
 void Checker::setSelected(bool value)
 {
 	selected = value;
+}
+
+bool Checker::isKing()
+{
+	return king;
+}
+
+void Checker::setKing()
+{
+	checkerTile->updateTexture(pathToCheckerKingTile);
+	king = true;
+}
+
+bool Checker::checkBelongsToUser(int idUser)
+{
+	return idUser == getIdOwner();
 }
 
 void Checker::draw()
