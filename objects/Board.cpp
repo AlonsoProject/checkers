@@ -20,6 +20,9 @@ Board::~Board()
 	}
 }
 
+/**
+ * Select cell by position
+ */
 void Board::selectCellByPosition(float x, float y, int mode)
 {
 	Tile* cell = findCellByPosition(x, y);
@@ -35,6 +38,9 @@ void Board::selectCellByPosition(float x, float y, int mode)
 	selectedCells->add(cell);
 }
 
+/**
+ * Clear selected cells
+ */
 void Board::clearSelectedCells()
 {
 	for (int i = 0; i < selectedCells->getSize(); i++)
@@ -49,6 +55,9 @@ void Board::clearSelectedCells()
 	if (selectedChecker) selectedChecker->setSelected(false);
 }
 
+/**
+ * Cell is selected
+ */
 bool Board::cellIsSelected(Tile* cell)
 {
 	for (int i = 0; i < selectedCells->getSize(); i++)
@@ -61,6 +70,9 @@ bool Board::cellIsSelected(Tile* cell)
 	return false;
 }
 
+/**
+ * Find selected checker
+ */
 Checker* Board::findSelectedChecker()
 {
 	for (auto checker : checkers)
@@ -70,6 +82,9 @@ Checker* Board::findSelectedChecker()
 	return nullptr;
 }
 
+/**
+ * Show moves
+ */
 void Board::showMoves(Checker* checker)
 {
 	std::vector<sf::Vector2f> cellAnglesPositions;
@@ -80,14 +95,23 @@ void Board::showMoves(Checker* checker)
 
 	for (const auto cellAngle : cellAnglesPositions)
 	{
-		Tile* cell = findCellByPosition(cellAngle.x, cellAngle.y);
+		Tile* cell = findCellByPosition(cellAngle);
 
 		if (cell)
 		{
-			Checker* checkerOnCell = findCheckerByPosition(cellAngle.x, cellAngle.y);
-			if (checkerOnCell && checkerOnCell->getIdOwner() == PlayerControllerFacade::getCurrentUserId())
+			Checker* checkerOnCell;
+			if (checkerOnCell = findCheckerByPosition(cellAngle))
 			{
-				continue;
+				if (checkerOnCell->checkBelongsToUser(PlayerControllerFacade::getCurrentUserId()))
+				{
+					cell->updateTexture(Config::redCellTile);
+					selectedCells->add(cell);
+					continue;
+				}
+				else
+				{
+					
+				}
 			}
 
 			cell->updateTexture(Config::greenCellTile);
@@ -96,14 +120,25 @@ void Board::showMoves(Checker* checker)
 	}
 }
 
+/**
+ * Move checker to cell
+ */
 void Board::moveCheckerToCell(Checker* checker, Tile* cell)
 {
 	sf::Vector2f position;
 	cell->getPosition(position);
 
 	checker->setPosition(position);
+
+	if (checkerInTop(checker) || checkerInBottom(checker))
+	{
+		checker->setKing();
+	}
 }
 
+/**
+ * Find checker by position
+ */
 Checker* Board::findCheckerByPosition(float x, float y)
 {
 	sf::Vector2f position;
@@ -119,6 +154,40 @@ Checker* Board::findCheckerByPosition(float x, float y)
 	return nullptr;
 }
 
+Checker* Board::findCheckerByPosition(const sf::Vector2f& position)
+{
+	return findCheckerByPosition(position.x, position.y);
+}
+
+Checker* Board::findCheckerOnCell(Tile* cell)
+{
+	sf::Vector2f cellPosition;
+	cell->getPosition(cellPosition);
+
+	return findCheckerByPosition(cellPosition.x, cellPosition.y);
+}
+
+/**
+ * Checker exists on cell
+ */
+bool Board::checkerExistsOnCell(Tile* cell)
+{
+	return findCheckerOnCell(cell) != nullptr;
+}
+
+bool Board::checkerInTop(Checker* checker)
+{
+	return checker->getCheckerTile()->getY() < Config::getCellHeight();
+}
+
+bool Board::checkerInBottom(Checker* checker)
+{
+	return checker->getCheckerTile()->getY() >= Config::height - Config::getCellHeight();
+}
+
+/**
+ * Find cell by position
+ */
 Tile* Board::findCellByPosition(float x, float y)
 {
 	sf::Vector2f position;
@@ -132,6 +201,11 @@ Tile* Board::findCellByPosition(float x, float y)
 		if (result) return cells->get(i);
 	}
 	return nullptr;
+}
+
+Tile* Board::findCellByPosition(const sf::Vector2f& position)
+{
+	return findCellByPosition(position.x, position.y);
 }
 
 void Board::draw()
