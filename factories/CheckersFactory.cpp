@@ -45,8 +45,8 @@ void CheckersFactory::factoryRow(std::vector<Checker*>& checkers)
 {
 	for (int i = 0; i < getNumberCheckersInRow(); i++)
 	{
-		checkers.push_back(new Checker(idOwners[1], Config::whiteCheckerTile, positionTopCheckers));
-		checkers.push_back(new Checker(idOwners[0], Config::blackCheckerTile, positionBottomChecker));
+		checkers.push_back(new Checker(idOwners[1], Config::whiteCheckerTile, Config::whiteCheckerKingTile, positionTopCheckers, MOVE_DIRECTION_TO_TOP));
+		checkers.push_back(new Checker(idOwners[0], Config::blackCheckerTile, Config::blackCheckerKingTile, positionBottomChecker, MOVE_DIRECTION_TO_BOTTOM));
 
 		checkers[checkers.size() - 2]->getCheckerTile()->resize(checkerWidth, checkerHeight);
 		checkers[checkers.size() - 1]->getCheckerTile()->resize(checkerWidth, checkerHeight);
