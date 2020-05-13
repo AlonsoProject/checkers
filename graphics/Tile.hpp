@@ -30,6 +30,10 @@ public:
 
 	void getPosition(sf::Vector2f& position);
 
+	float getX();
+	float getY();
+
+	std::string getCurrentTexture();
 	std::string getOldTexture();
 	void updateTexture(const std::string& pathToTexture);
 };

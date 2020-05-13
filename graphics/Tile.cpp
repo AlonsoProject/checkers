@@ -44,6 +44,21 @@ void Tile::getPosition(sf::Vector2f& position)
 	position.y = tileSprite->getPosition().y;
 }
 
+float Tile::getX()
+{
+	return tileSprite->getPosition().x;
+}
+
+float Tile::getY()
+{
+	return tileSprite->getPosition().y;
+}
+
+std::string Tile::getCurrentTexture()
+{
+	return currentTilePath;
+}
+
 std::string Tile::getOldTexture()
 {
 	return oldTilePath;
